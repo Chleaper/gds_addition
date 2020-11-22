@@ -1,10 +1,15 @@
 %This code is used for generate sin pattern 
-
-%% define geometry
+%unit:um
+%% define geometry 
 clear;
-x=0:pi/50:2*pi;
-y1=sin(x)+0.5;
-y2=sin(x)-0.5;
+m=10; %m is shrink factor in sin(x/m)
+p=1;%p is period of sine
+w=1;%width of sine
+ph=pi/2;%phase shift
+%% get geometry
+x=0:m*pi/50:m*pi*2*p;
+y1=sin(x/m+ph)+w/2;
+y2=sin(x/m+ph)-w/2;
 n=length(x);
 %% figure
 plot(x,y1);
@@ -28,3 +33,11 @@ sa=gds_structure('sine',ka);
 %% output gds file
 glib=gds_library('sine','uunit',1e-6,'dbunit',1e-9,sa);
 write_gds_library(glib,'!sine.gds');
+
+%% geometry feather
+X=['width of sine is ',num2str(w)];
+disp(X);
+X=['length of sine is ',num2str(x(end))];
+disp(X);
+X=['ratio of length and width is ',num2str(x(end)/w)];
+disp(X);
