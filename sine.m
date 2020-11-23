@@ -1,4 +1,4 @@
-%This code is used for generate sin pattern 
+%This code is used for generating sin pattern 
 %unit:um
 %% define geometry 
 clear;
